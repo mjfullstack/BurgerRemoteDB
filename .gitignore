@@ -5,6 +5,12 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+### MY Adds to the Ignore List! ###
+config.js
+package.json
+
+
+
 # Runtime data
 pids
 *.pid
