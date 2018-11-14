@@ -1,0 +1,20 @@
+body {
+  background-color: gold;
+}
+
+#burger-jumbotron {
+  justify-content: center;
+  text-align: center;
+  background-color: red;
+  background-image: "../images/RedRobinBurger_640x360-000.jpg";
+}
+
+#burger-intro_image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 8%;
+}
+
+.burger-columns {
+  text-align: center;
+}
