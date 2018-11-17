@@ -1,9 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>Lunches</title>
-	</head>
-	<body>
-		{{{ body }}}
-	</body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- CSS Reset, IF DESIRED, UNCOMMENT -->
+  {{!-- <link rel = "stylesheet" type = "text/css" href = "../../public/assets/css/reset.css" />     --}}
+
+  <!-- CSS version 4, but 3 is more widely used on existing sites like PHP is for WordPress -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+  crossorigin="anonymous">
+
+  <!-- Latest version 3 CSS compiled and minified  , more common -->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- Font Awesome! , takes a LONG time to load 1000+ fonts, selece what you want and download / save locally -->
+  <!-- <link rel="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+  <!-- LOCAL CSS Stylesheet -->
+  {{!-- <link rel="stylesheet" type="text/css" href="../../public/assets/css/style.css"> --}}
+  <title>Eat-Da-Burger!</title>
+	<style>
+		body {
+		background-color: gold;
+	}
+
+	#burger-jumbotron {
+		justify-content: center;
+		text-align: center;
+		background-color: red;
+		{{!-- background-image: "../images/RedRobinBurger_640x360-000.jpg"; --}}
+	}
+
+	#burger-intro_image {
+		width: 100%;
+		height: auto;
+		margin-bottom: 8%;
+	}
+
+	.burger-columns {
+		text-align: center;
+	}
+
+	.burger-lists {
+		text-align: left;
+	}
+	</style>
+</head>
+
+
+<body>
+  <div class="container">
+    <div class="jumbtron" id="burger-jumbotron">
+      <!-- Top Display Row -->
+      <div class="row">
+        <div class="col col-md-4 col-sm-12 col-xs-12">
+        </div>
+        <div class="col col-md-4 col-sm-12 col-xs-12 burger-columns">
+          <h1 id="burger-title">&nbsp;<strong>Eat-Da-Burger!</strong></h1>
+          <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span><h5 id="burger-sub-title"><strong>Come See Your Friends at Red Robin!</strong></h5>
+          {{!-- <img id="burger-intro_image" src="../../public/assets/images/RedRobinBurger_640x360-000.jpg" alt="Red Robin Burger"> --}}
+          <img id="burger-intro_image" src="./RedRobinBurger_640x360-000.jpg" alt="Red Robin Burger">
+        </div>
+        <div class="col col-md-4 col-sm-12 col-xs-12">
+        </div>
+      </div>
+    </div> <!-- jumbotron-->
+    <div class="row">
+      <!-- Second Row has the columns for burgers-->
+      <div class="col col-md-4 col-sm-12 col-xs-12 burger-columns">
+        <h2><strong>Burgers I'd LIKE to Devour</strong></h2>
+        <div id="burgers-to-be-devoured-area"></div>
+      </div>
+      <div class="col col-md-4 col-sm-12 col-xs-12 burger-columns">
+        <h3 id="burger-title"><strong>Enter-Da-NEW-Burger!</strong></h3>
+        <div class="text-area" id="enter-new-burger">
+          <form class="input">
+            <textarea rows="2" cols="30"></textarea>
+            <p><button class="btn btn-danger btn-sm submit">Submit</button></p>
+          </form>
+        </div>
+      </div>
+      <div class="col col-md-4 col-sm-12 col-xs-12 burger-columns">
+          <h2><strong>Burgers I HAVE Devoured</strong></h2>
+          <div id="burgers-already-devoured-list-area"></div>
+        </div>
+    </div> <!-- row -->
+    <div class="row">
+      <!-- Third Row has the columns for burger lists -->
+      <div class="col col-md-4 col-sm-12 col-xs-12 burger-lists">
+        <div id="burgers-to-be-devoured-list-area">
+					{{!-- MISSSING HELPER for block --}}
+					{{!-- {{{#block "burgers-to-be-devoured-area"}}} --}}
+					{{!-- {{{body}}} --}}
+						{{!-- <ul> --}}
+						{{#each want_devour }}
+							{{!-- <li>{{id}}, {{burger_name}}, Devoured: {{devoured}}, BurpTime: {{burp_time}} </li> --}}
+							<p>{{burger_name}}<form class="btn"><button class="btn btn-success btn-sm submit" data-value={{id}}>Devour</button></form></p>
+						{{/each}}
+						{{!-- </ul> --}}
+
+				</div>
+      </div>
+      <div class="col col-md-4 col-sm-12 col-xs-12 burger-lists">
+        <div id="enter-new-burger">
+        </div>
+      </div>
+      <div class="col col-md-4 col-sm-12 col-xs-12 burger-lists">
+        <div id="burgers-already-devoured-area">
+					{{!-- {{{#block "burgers-already-devoured-area"}}} --}}
+					{{!-- {{{body}}} --}}
+						{{!-- <ul> --}}
+						{{#each did_devour }}
+							<p>{{burger_name}}</p>
+						{{/each}}
+						{{!-- </ul> --}}
+				</div>
+      </div>
+    </div> <!-- row -->
+  </div> <!-- container-->
+
+<script>
+$(document).ready(function() {
+  $("#burgers-to-be-devoured-list-area").on("click", ".submit", function(event) {
+    event.preventDefault();
+    {{!-- console.log("data-value: " + $(this).data('value')); --}}
+    {{!-- alert("data-value: " + $(this).data('value')); --}}
+    var burgerDevoured = $(this).data('value');
+    var burgerHost = window.location.host; // didn't need this after all
+    var frontEndFilesRoute = "/devoured"; // This is what we're using!
+    var postDataURL = frontEndFilesRoute + '/' + burgerDevoured;
+
+
+    $.ajax({
+      url: postDataURL,
+      method:"POST",
+      data: burgerDevoured,
+      success: function(response) {
+        console.log("response: ", response);
+        {{!-- alert("response: ", response); --}}
+
+      },
+      error: function(){
+        alert("AJAX response error");
+      }
+    }); 
+
+  });
+});
+<{{!}}/script>
+
+</body>
 </html>
+
