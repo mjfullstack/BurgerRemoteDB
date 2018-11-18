@@ -80,9 +80,9 @@
       </div>
       <div class="col col-md-4 col-sm-12 col-xs-12 burger-columns">
         <h3 id="burger-title"><strong>Enter-Da-NEW-Burger!</strong></h3>
-        <div class="text-area" id="enter-new-burger">
+        <div class="text-area" id="enter-new-burger-area">
           <form class="input">
-            <textarea rows="2" cols="30"></textarea>
+            <textarea rows="2" cols="30" id="newBurgerText"></textarea>
             <p><button class="btn btn-danger btn-sm submit">Submit</button></p>
           </form>
         </div>
@@ -102,10 +102,10 @@
 						{{!-- <ul> --}}
 						{{#each want_devour }}
 							{{!-- <li>{{id}}, {{burger_name}}, Devoured: {{devoured}}, BurpTime: {{burp_time}} </li> --}}
-							<p>{{burger_name}}<form class="btn"><button class="btn btn-success btn-sm submit" data-value={{id}}>Devour</button></form></p>
+							{{!-- <p>{{burger_name}}<form class="btn"><button class="btn btn-success btn-sm submit" data-value={{id}}>Devour</button></form></p> --}}
+							<p>{{burger_name}}<a role="buttom" href="localhost:3000/devoured" class="btn"><button class="btn btn-success btn-sm submit" data-value={{id}}>Devour</button></a></p>
 						{{/each}}
 						{{!-- </ul> --}}
-
 				</div>
       </div>
       <div class="col col-md-4 col-sm-12 col-xs-12 burger-lists">
@@ -128,24 +128,51 @@
 
 <script>
 $(document).ready(function() {
+
+  $("#enter-new-burger-area").on("click", ".submit", function(event) {
+    event.preventDefault();
+    var newBurger = $(newBurgerText).val().trim();
+    console.log("newBurger: " + newBurger);
+    var burgerHost = window.location.host; // didn't need this after all
+    var frontEndFilesRoute = "/addnew"; // This is what we're using!
+    var postDataURL = frontEndFilesRoute + '/'  + newBurger;
+    console.log('postDataURL: ' + postDataURL);
+
+    $.ajax({
+      url: postDataURL,
+      method:"POST",
+      data: newBurger,
+      success: function(response) {
+        console.log("response: ", response);
+        {{!-- console.log("response: ", response); --}}
+        {{!-- alert("response: ", response); --}}
+        {{!-- // Not recommended Anyway!!! --}}
+        {{!-- response.redirect('/'); // Not a FrontEnd function --}}
+      },
+      error: function(){
+        alert("AJAX response error");
+      }
+    }); 
+  });
+
+
   $("#burgers-to-be-devoured-list-area").on("click", ".submit", function(event) {
     event.preventDefault();
-    {{!-- console.log("data-value: " + $(this).data('value')); --}}
-    {{!-- alert("data-value: " + $(this).data('value')); --}}
     var burgerDevoured = $(this).data('value');
     var burgerHost = window.location.host; // didn't need this after all
     var frontEndFilesRoute = "/devoured"; // This is what we're using!
     var postDataURL = frontEndFilesRoute + '/' + burgerDevoured;
 
 
-    $.ajax({
+    $.ajax({ // c-r-U-d UPDATE
       url: postDataURL,
-      method:"POST",
+      method:"PUT",
       data: burgerDevoured,
       success: function(response) {
-        console.log("response: ", response);
+        {{!-- console.log("response: ", response); --}}
         {{!-- alert("response: ", response); --}}
-
+        {{!-- // Not recommended Anyway!!! --}}
+        {{!-- response.redirect('/'); // Not a FrontEnd function --}}
       },
       error: function(){
         alert("AJAX response error");
