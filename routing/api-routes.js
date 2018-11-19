@@ -51,10 +51,11 @@ module.exports = function(app, connection) {
         },
       function(err, response) {
         console.log('myQuery:', myQuery.sql);
-        console.log('response.body:', response.body);
+        console.log('response.insertId:', response.insertId);
         console.log('response:', response);
         console.log("\n" + response.affectedRows + " Burgers updated!\n");
-        res.status(200).json(burgerID)
+        res.status(200).json(response.insertId).end();
+        // res.status(200);
         // getAllBurgers(req, res);
         // Not recommended Anyway!!!
         // response.redirect('/'); // Not a FrontEnd function
