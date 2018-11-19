@@ -30,8 +30,8 @@ module.exports = function(app, connection) {
         console.log('myQuery:', myQuery.sql);
         console.log('res:', response);
         console.log("\n" + response.affectedRows + " Burgers updated!\n");
-        // res.status(200).json(burgerID)
-        getAllBurgers(req, res);
+        res.status(200).json(burgerID)
+        // getAllBurgers(req, res);
       }
     );
   };
@@ -52,9 +52,10 @@ module.exports = function(app, connection) {
       function(err, response) {
         console.log('myQuery:', myQuery.sql);
         console.log('response.body:', response.body);
+        console.log('response:', response);
         console.log("\n" + response.affectedRows + " Burgers updated!\n");
-        // res.status(200).json(burgerID)
-        getAllBurgers(req, res);
+        res.status(200).json(burgerID)
+        // getAllBurgers(req, res);
         // Not recommended Anyway!!!
         // response.redirect('/'); // Not a FrontEnd function
 
@@ -99,6 +100,13 @@ module.exports = function(app, connection) {
     getAllBurgers(req, res);
   });
 
+  app.get('/devoured', function(req, res) {
+    console.log("app.GET/devoured in api-routes.js got hit!");
+    // res.json(burgerDevoured);
+    console.log( 'GET - DEVOURED... req.body: ', req.body);
+    getAllBurgers(req, res);
+  });
+
   // c-R-ud: READ
   app.get("/", function(req, res) {
     console.log("app.GET/ in api-routes just got hit!")
@@ -118,6 +126,4 @@ module.exports = function(app, connection) {
       console.log("app.POST in api-routes.js got hit!");
       addNewBurger(req, res);
     });
-  
-  
 };

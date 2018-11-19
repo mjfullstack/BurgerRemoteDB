@@ -51,6 +51,11 @@
 	.burger-lists {
 		text-align: left;
 	}
+
+  #devoured {
+    display: none;
+  }
+
 	</style>
 </head>
 
@@ -89,7 +94,7 @@
       </div>
       <div class="col col-md-4 col-sm-12 col-xs-12 burger-columns">
           <h2><strong>Burgers I HAVE Devoured</strong></h2>
-          <div id="burgers-already-devoured-list-area"></div>
+          <div id="burgers-already-devoured-area"></div>
         </div>
     </div> <!-- row -->
     <div class="row">
@@ -101,9 +106,9 @@
 					{{!-- {{{body}}} --}}
 						{{!-- <ul> --}}
 						{{#each want_devour }}
-							{{!-- <li>{{id}}, {{burger_name}}, Devoured: {{devoured}}, BurpTime: {{burp_time}} </li> --}}
+							{{!-- <li>{{id}}, {{burger_name}}, Devoured: {{devoured}}, BurpTime: {{burp_time}} </li>    href="localhost:3000/devoured"      --}}
 							{{!-- <p>{{burger_name}}<form class="btn"><button class="btn btn-success btn-sm submit" data-value={{id}}>Devour</button></form></p> --}}
-							<p>{{burger_name}}<a role="buttom" href="localhost:3000/devoured" class="btn"><button class="btn btn-success btn-sm submit" data-value={{id}}>Devour</button></a></p>
+							<p id="p-want-devour-{{id}}">{{burger_name}}<a role="button" class="btn" href="#"><button class="btn btn-success btn-sm submit" data-value={{id}} id="a-want-devour-{{id}}">Devour</button></a></p>
 						{{/each}}
 						{{!-- </ul> --}}
 				</div>
@@ -113,8 +118,8 @@
         </div>
       </div>
       <div class="col col-md-4 col-sm-12 col-xs-12 burger-lists">
-        <div id="burgers-already-devoured-area">
-					{{!-- {{{#block "burgers-already-devoured-area"}}} --}}
+        <div id="burgers-already-devoured-list-area">
+					{{!-- {{{#block "burgers-already-devoured-list-area"}}} --}}
 					{{!-- {{{body}}} --}}
 						{{!-- <ul> --}}
 						{{#each did_devour }}
@@ -126,62 +131,8 @@
     </div> <!-- row -->
   </div> <!-- container-->
 
-<script>
-$(document).ready(function() {
-
-  $("#enter-new-burger-area").on("click", ".submit", function(event) {
-    event.preventDefault();
-    var newBurger = $(newBurgerText).val().trim();
-    console.log("newBurger: " + newBurger);
-    var burgerHost = window.location.host; // didn't need this after all
-    var frontEndFilesRoute = "/addnew"; // This is what we're using!
-    var postDataURL = frontEndFilesRoute + '/'  + newBurger;
-    console.log('postDataURL: ' + postDataURL);
-
-    $.ajax({
-      url: postDataURL,
-      method:"POST",
-      data: newBurger,
-      success: function(response) {
-        console.log("response: ", response);
-        {{!-- console.log("response: ", response); --}}
-        {{!-- alert("response: ", response); --}}
-        {{!-- // Not recommended Anyway!!! --}}
-        {{!-- response.redirect('/'); // Not a FrontEnd function --}}
-      },
-      error: function(){
-        alert("AJAX response error");
-      }
-    }); 
-  });
-
-
-  $("#burgers-to-be-devoured-list-area").on("click", ".submit", function(event) {
-    event.preventDefault();
-    var burgerDevoured = $(this).data('value');
-    var burgerHost = window.location.host; // didn't need this after all
-    var frontEndFilesRoute = "/devoured"; // This is what we're using!
-    var postDataURL = frontEndFilesRoute + '/' + burgerDevoured;
-
-
-    $.ajax({ // c-r-U-d UPDATE
-      url: postDataURL,
-      method:"PUT",
-      data: burgerDevoured,
-      success: function(response) {
-        {{!-- console.log("response: ", response); --}}
-        {{!-- alert("response: ", response); --}}
-        {{!-- // Not recommended Anyway!!! --}}
-        {{!-- response.redirect('/'); // Not a FrontEnd function --}}
-      },
-      error: function(){
-        alert("AJAX response error");
-      }
-    }); 
-
-  });
-});
-<{{!}}/script>
+{{!-- <script src="../../public/assets/javascript/main.js"></script> --}}
+<script src="./main.js"></script>
 
 </body>
 </html>
