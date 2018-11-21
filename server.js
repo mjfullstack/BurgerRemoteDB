@@ -15,8 +15,12 @@ app.use(bodyParser.json());
 // resources that are "dynamic" and exist elsewhere. In this case,
 // our resources all reside in the same place so we just need to tell
 // it so.
-// app.use((express.static(path.join(__dirname,"./public"))));
-app.use((express.static(path.join(__dirname,"./views/layouts"))));
+app.use((express.static(path.join(__dirname,"/public"))));
+console.log("path.join(__dirname, /public)", path.join(__dirname,"./public"));
+
+// This is WRONG because 
+// app.use((express.static(path.join(__dirname,"./views/layouts")))); 
+
 var exphbs = require("express-handlebars");
 
 // HANDLEBARS When needed

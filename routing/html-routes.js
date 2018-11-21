@@ -10,7 +10,7 @@ module.exports = function(app) {
   // });
 
   // app.get('/', function(req, res) {
-  //   // console.log("app.get/ in html-routes.js got hit!"); // Test with different name than index.html
-  //   // res.sendFile(path.join(__dirname, "../public/index.html"));
+  //   console.log("home.get/ in html-routes.js got hit!"); // Test with different name than index.html
+  //   res.sendFile(path.join(__dirname, "../public/index.html"));
   // });
 }

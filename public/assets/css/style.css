@@ -1,3 +1,4 @@
+/* CSS Style sheet */
 body {
   background-color: gold;
 }
@@ -18,3 +19,12 @@ body {
 .burger-columns {
   text-align: center;
 }
+
+.burger-lists {
+  text-align: left;
+}
+
+#devoured {
+  display: none;
+}
+

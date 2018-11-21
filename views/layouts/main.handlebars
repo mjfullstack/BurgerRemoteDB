@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- CSS Reset, IF DESIRED, UNCOMMENT -->
-  {{!-- <link rel = "stylesheet" type = "text/css" href = "../../public/assets/css/reset.css" />     --}}
+  <link rel = "stylesheet" type = "text/css" href = "./assets/css/reset.css" />    
 
   <!-- CSS version 4, but 3 is more widely used on existing sites like PHP is for WordPress -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -24,10 +24,10 @@
   <!-- <link rel="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 
   <!-- LOCAL CSS Stylesheet -->
-  {{!-- <link rel="stylesheet" type="text/css" href="../../public/assets/css/style.css"> --}}
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
   <title>Eat-Da-Burger!</title>
 	<style>
-		body {
+		{{!-- body {
 		background-color: gold;
 	}
 
@@ -35,7 +35,7 @@
 		justify-content: center;
 		text-align: center;
 		background-color: red;
-		{{!-- background-image: "../images/RedRobinBurger_640x360-000.jpg"; --}}
+		background-image: "../images/RedRobinBurger_640x360-000.jpg";
 	}
 
 	#burger-intro_image {
@@ -55,7 +55,7 @@
   #devoured {
     display: none;
   }
-
+ --}}
 	</style>
 </head>
 
@@ -71,7 +71,7 @@
           <h1 id="burger-title">&nbsp;<strong>Eat-Da-Burger!</strong></h1>
           <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span><h5 id="burger-sub-title"><strong>Come See Your Friends at Red Robin!</strong></h5>
           {{!-- <img id="burger-intro_image" src="../../public/assets/images/RedRobinBurger_640x360-000.jpg" alt="Red Robin Burger"> --}}
-          <img id="burger-intro_image" src="./RedRobinBurger_640x360-000.jpg" alt="Red Robin Burger">
+          <img       id="burger-intro_image" src="./assets/images/RedRobinBurger_640x360-000.jpg" alt="Red Robin Burger">
         </div>
         <div class="col col-md-4 col-sm-12 col-xs-12">
         </div>
@@ -108,7 +108,7 @@
 						{{#each want_devour }}
 							{{!-- <li>{{id}}, {{burger_name}}, Devoured: {{devoured}}, BurpTime: {{burp_time}} </li>    href="localhost:3000/devoured"      --}}
 							{{!-- <p>{{burger_name}}<form class="btn"><button class="btn btn-success btn-sm submit" data-value={{id}}>Devour</button></form></p> --}}
-							<p id="p-want-devour-{{id}}">{{burger_name}}<a role="button" class="btn" href="#"><button class="btn btn-success btn-sm submit" data-value={{id}} id="a-want-devour-{{id}}">Devour</button></a></p>
+							<p id="p-want-devour-{{id}}">{{burger_name}}<a role="button" class="btn"><button class="btn btn-success btn-sm submit" data-value={{id}} id="a-want-devour-{{id}}">Devour</button></a></p>
 						{{/each}}
 						{{!-- </ul> --}}
 				</div>
@@ -132,7 +132,7 @@
   </div> <!-- container-->
 
 {{!-- <script src="../../public/assets/javascript/main.js"></script> --}}
-<script src="./main.js"></script>
+<script src="./assets/javascript/main.js"></script>
 
 </body>
 </html>
