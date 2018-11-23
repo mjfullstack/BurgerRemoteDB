@@ -1,8 +1,7 @@
+// NPM Stuff...
 var express = require("express");
 var bodyParser = require("body-parser");
-var mysql = require("mysql");
 var path = require('path');
-var config = require("./config/config.js");
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -18,50 +17,21 @@ app.use(bodyParser.json());
 app.use((express.static(path.join(__dirname,"/public"))));
 console.log("path.join(__dirname, /public)", path.join(__dirname,"./public"));
 
-// This is WRONG because 
+// This is WRONG because:
 // app.use((express.static(path.join(__dirname,"./views/layouts")))); 
+// 1. The files in this directory DO change... are NOT  static, via handlebars, and
+// 2. Handlebars GENERATES "index.html" which acts like it is in public (I think)
 
 var exphbs = require("express-handlebars");
 
-// HANDLEBARS When needed
+// HANDLEBARS
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-// Database Connection - if needed
-var connection = mysql.createConnection({
-  host: "localhost",
-  port: 3306,
-  user: "root",
-  password: config.password,
-  database: "burgers_db"
-});
-
-connection.connect(function(err) {
-  if (err) {
-    console.error("error connecting: " + err.stack);
-    return;
-  }
-  console.log("connected as id " + connection.threadId);
-});
 
 // Required Server Files
-var htmlRoutes = require("./routing/html-routes.js")(app);
-var apiRoutes = require("./routing/api-routes.js")(app, connection);
-
-
-//   connection.query("SELECT * FROM quotes_db.quotes WHERE ?",
-//   {id:qID}, function(err, data) {
-//     console.log(data);
-//     // res.json(data);
-//     res.render("single-quote", {
-//     id:data[0].id,
-//     author: data[0].author,
-//     quote: data[0].quote,
-//     heading: "Just One Quote..."
-//     });
-//   })
-// })
-
+// var htmlRoutes = require("./routing/html-routes.js")(app);
+var apiRoutes = require("./controllers/burgers_controller.js")(app);
 
 
 // Start our server so that it can begin listening to client requests.
@@ -70,4 +40,3 @@ app.listen(PORT, function() {
   console.log("Server listening on: http://localhost:" + PORT);
 });
 
-exports.burgerConnection = connection;
