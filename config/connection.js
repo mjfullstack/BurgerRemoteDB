@@ -1,6 +1,6 @@
 // NPM package
 var mysql = require("mysql");
-var config = require("./config.js");
+var env = require("env");
 
 console.log("FILE: connection.js ACTIVE");
 
@@ -9,7 +9,8 @@ var connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
-  password: config.password,
+  // password: config.password,
+  password: process.env.SQLPASS,
   database: "burgers_db"
 });
 
