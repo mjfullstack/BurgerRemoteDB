@@ -1,0 +1,31 @@
+{
+  "name": "BurgerRemoteDB",
+  "version": "1.0.0",
+  "description": "Eat-Da-Burger Full Stack A[[",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjfullstack/BurgerRemoteDB.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mjfullstack/BurgerRemoteDB/issues"
+  },
+  "homepage": "https://github.com/mjfullstack/BurgerRemoteDB#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "config": "^2.0.1",
+    "env": "0.0.2",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "mysql": "^2.16.0",
+    "save": "^2.3.2"
+  },
+  "devDependencies": {}
+}
