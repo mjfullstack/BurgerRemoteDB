@@ -48,11 +48,11 @@ module.exports =  {
   // c-R-ud: READ
   selectAll : function (req, res) {
     var myQuery1 = connection.query(
-      "SELECT * FROM burgers_db.burgers WHERE ?", { devoured: 0 }, function(err, result1) {
+      "SELECT * FROM burgers WHERE ?", { devoured: 0 }, function(err, result1) {
         if (err) { console.log(err); throw err; };
         // Get list of ones DEVOURED
         var myQuery2 = connection.query(
-          "SELECT * FROM burgers_db.burgers WHERE ?", { devoured: 1 }, function(err, result2) {
+          "SELECT * FROM burgers WHERE ?", { devoured: 1 }, function(err, result2) {
             if (err) { console.log(err); throw err; };
             // logs the actual query being run 
             console.log(myQuery1.sql);
